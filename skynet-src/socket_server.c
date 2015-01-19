@@ -1361,9 +1361,11 @@ do_bind(const char *host, int port, int protocol, int *family) {
 	*family = ai_list->ai_family;
 	fd = socket(*family, ai_list->ai_socktype, 0);
 	if (fd < 0) {
+		printf("_failed_fd\n");
 		goto _failed_fd;
 	}
 	if (setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, (void *)&reuse, sizeof(int))==-1) {
+		printf("setsockopt failed\n");
 		goto _failed;
 	}
 	status = bind(fd, (struct sockaddr *)ai_list->ai_addr, ai_list->ai_addrlen);
