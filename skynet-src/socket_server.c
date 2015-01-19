@@ -1370,7 +1370,7 @@ do_bind(const char *host, int port, int protocol, int *family) {
 	}
 	status = bind(fd, (struct sockaddr *)ai_list->ai_addr, ai_list->ai_addrlen);
 	if (status != 0){
-		printf("bind _failed\n");
+		printf("bind _failed  %d\n",status);
 		goto _failed;
 	}
 
