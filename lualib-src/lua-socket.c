@@ -12,6 +12,8 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
+
+#include <stdio.h>
 #include "skynet_socket.h"
 
 #define BACKLOG 32
@@ -464,6 +466,7 @@ llisten(lua_State *L) {
 	int port = luaL_checkinteger(L,2);
 	int backlog = luaL_optinteger(L,3,BACKLOG);
 	struct skynet_context * ctx = lua_touserdata(L, lua_upvalueindex(1));
+	printf("start skynet_socket_listen\n");
 	int id = skynet_socket_listen(ctx, host,port,backlog);
 	if (id < 0) {
 		return luaL_error(L, "Listen error");

@@ -1397,17 +1397,20 @@ int
 socket_server_listen(struct socket_server *ss, uintptr_t opaque, const char * addr, int port, int backlog) {
 	int fd = do_listen(addr, port, backlog);
 	if (fd < 0) {
+		printf("fd -1\n");
 		return -1;
 	}
 	struct request_package request;
 	int id = reserve_id(ss);
 	if (id < 0) {
+		printf("fd close\n");
 		close(fd);
 		return id;
 	}
 	request.u.listen.opaque = opaque;
 	request.u.listen.id = id;
 	request.u.listen.fd = fd;
+	printf("send_request\n");
 	send_request(ss, &request, 'L', sizeof(request.u.listen));
 	return id;
 }

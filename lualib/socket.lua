@@ -320,6 +320,7 @@ function socket.listen(host, port, backlog)
 		host, port = string.match(host, "([^:]+):(.+)$")
 		port = tonumber(port)
 	end
+	print("enter to driver.listen")
 	return driver.listen(host, port, backlog)
 end
 

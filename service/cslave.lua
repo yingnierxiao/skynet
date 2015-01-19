@@ -225,6 +225,7 @@ skynet.start(function()
 	local master_addr = skynet.getenv "master"
 	local harbor_id = tonumber(skynet.getenv "harbor")
 	local slave_address = assert(skynet.getenv "address")
+	print("start socket.listen"..slave_address)
 	local slave_fd = socket.listen(slave_address)
 	skynet.error("slave connect to master " .. tostring(master_addr))
 	local master_fd = assert(socket.open(master_addr), "Can't connect to master")
