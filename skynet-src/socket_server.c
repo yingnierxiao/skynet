@@ -1384,9 +1384,11 @@ do_listen(const char * host, int port, int backlog) {
 	int family = 0;
 	int listen_fd = do_bind(host, port, IPPROTO_TCP, &family);
 	if (listen_fd < 0) {
+		printf("listen_fd -1\n");
 		return -1;
 	}
 	if (listen(listen_fd, backlog) == -1) {
+		printf("listen_fd close\n");
 		close(listen_fd);
 		return -1;
 	}
