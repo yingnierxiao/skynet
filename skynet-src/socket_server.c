@@ -1369,8 +1369,10 @@ do_bind(const char *host, int port, int protocol, int *family) {
 		goto _failed;
 	}
 	status = bind(fd, (struct sockaddr *)ai_list->ai_addr, ai_list->ai_addrlen);
-	if (status != 0)
+	if (status != 0){
+		printf("bind _failed\n");
 		goto _failed;
+	}
 
 	freeaddrinfo( ai_list );
 	return fd;
