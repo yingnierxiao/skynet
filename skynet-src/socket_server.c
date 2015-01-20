@@ -1368,6 +1368,7 @@ do_bind(const char *host, int port, int protocol, int *family) {
 		printf("setsockopt failed\n");
 		goto _failed;
 	}
+	printf("%d\n",fd );
 	status = bind(fd, (struct sockaddr *)ai_list->ai_addr, ai_list->ai_addrlen);
 	if (status != 0){
 		printf("bind _failed  %d\n",status);
